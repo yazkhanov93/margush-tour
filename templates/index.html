@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="slider"
+	class="slider-element slider-parallax swiper_wrapper min-vh-60 min-vh-md-100 include-header include-topbar">
+	<div class="slider-inner">
+
+		<div class="fslider h-100 position-absolute" data-speed="3000" data-pause="7500" data-animation="fade"
+			data-arrows="false" data-pagi="false" style="background-color: #333;">
+			<div class="flexslider">
+				<div class="slider-wrap">
+					{% for banner in banner %}
+					<div class="slide"
+						style="background: url('{{banner.file1.url}}') center center; background-size: cover;">
+
+					</div>
+				
+					<div class="slide"
+						style="background: url('{{banner.file2.url}}') center center; background-size: cover;">
+					</div>
+					<div class="slide"
+						style="background: url('{{banner.file3.url}}') center center; background-size: cover;">
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+		</div>
+
+
+
+	</div>
+</section>
+
+<!-- Content
+		============================================= -->
+<section id="content">
+	<div class="content-wrap">
+		<div class="container clearfix">
+
+			<div class="row col-mb-80 mb-0">
+
+				<div class="col-12">
+
+					<div class="heading-block center border-bottom-0">
+						<h2>Interactive Office Environment</h2>
+						<p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam deleniti
+							maxime
+							voluptas iure perferendis doloremque dolorem soluta nostrum odit quis, pariatur eum
+							quia
+							placeat architecto et rem earum quae magnam. Lorem ipsum dolor sit amet consectetur
+							adipisicing elit. Quidem laborum illum magni possimus ipsa quo. Lorem ipsum dolor
+							sit amet, consectetur adipisicing elit. Praesentium corporis nulla inventore
+							quisquam, reiciendis aliquam?</p>
+					</div>
+
+					<div class="fslider" data-pagi="false" data-animation="fade">
+						<div class="flexslider">
+							<div class="slider-wrap">
+								<div class="slide"><a href="#"><img src="{% static 'images/tayyn/main_page/1.jpg' %}"
+											alt="About Image"></a></div>
+								<div class="slide"><a href="#"><img src="{% static 'images/tayyn/main_page/2.jpg' %}"
+											alt="About Image"></a></div>
+								<div class="slide"><a href="#"><img src="{% static 'images/tayyn/main_page/3.jpg' %}"
+											alt="About Image"></a></div>
+								<div class="slide"><a href="#"><img src="{% static 'images/tayyn/main_page/4.jpg' %}"
+											alt="About Image"></a></div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section topmargin-lg footer-stick">
+			<div class="container center clearfix">
+
+				<div class="heading-block bottommargin-sm border-bottom-0">
+					<span class="before-heading color">
+						Создайте индивидуальный план на основе вашего вкуса</span>
+					<h2>
+						Начните составлять планы путешествий</h2>
+				</div>
+
+				<p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam deleniti maxime
+					voluptas iure perferendis doloremque dolorem soluta nostrum odit quis, pariatur eum quia
+					placeat architecto et rem earum quae magnam. Lorem ipsum dolor sit amet consectetur
+					adipisicing elit. Quidem laborum illum magni possimus ipsa quo.</p>
+
+
+			</div>
+		</div>
+
+		<div class="container clearfix">
+
+			<div class="heading-block center border-bottom-0">
+
+				<h2>
+					Туры внутри страны</h2>
+			</div>
+
+		</div>
+
+		<div id="oc-products" class="owl-carousel products-carousel carousel-widget" data-pagi="false" data-items-xs="1"
+			data-items-sm="2" data-items-md="3" data-items-lg="4">
+		{% for tour_inside in tour_inside %}
+			<div class="oc-item">
+				<div class="product">
+					<div class="product-image">
+						<a href="#"><img src="{{tour_inside.image1.url}}" alt="Checked Short Dress"></a>
+						<a href="#"><img src="{{tour_inside.image2.url}}" alt="Checked Short Dress"></a>
+
+					</div>
+
+				</div>
+			</div>
+			{% endfor %}
+			
+		</div>
+
+		<section id="content" style="margin-top: 5%;">
+			<div class="content-wrap pb-0">
+				<div class="container">
+
+					<div class="heading-block center">
+						<h2>
+							Туры за рубежом </h2>
+						<span>Оставайтесь на связи с последними тенденциями в сфере путешествий и новостями о
+							направлениях</span>
+					</div>
+
+					<div id="oc-products" class="owl-carousel products-carousel carousel-widget" data-pagi="false"
+						data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+						{% for tour_outside in tour_outside %}
+						<div class="oc-item">
+							<div class="product">
+								<div class="product-image">
+									<a href="#"><img src="{{tour_outside.image1.url}}"
+											alt="Checked Short Dress"></a>
+									<a href="#"><img src="{{tour_outside.image2.url}}"
+											alt="Checked Short Dress"></a>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="container">
+
+		<div class="heading-block center">
+			<h2>
+				ПОСЛЕДНИЕ ИЗ НАШЕГО НОВОСТЕЙ</h2>
+			<span>Оставайтесь на связи с последними тенденциями в сфере путешествий и новостями о
+				направлениях</span>
+		</div>
+
+		<div class="row posts-md col-mb-50">
+			{% for news in news %}
+			<div class="entry col-md-6">
+				<div class="grid-inner row align-items-center">
+					<div class="col-lg-6">
+						<div class="entry-image mb-0">
+							<a href="#"><img src="{{news.image.url}}" alt="Paris"></a>
+						</div>
+					</div>
+					<div class="col-lg-6 mt-3 mt-lg-0">
+						<div class="entry-title title-xs nott">
+							<h3><a href="#">{{news.name}}</a></h3>
+						</div>
+						<div class="entry-meta">
+
+						</div>
+						<div class="entry-content">
+							<a href="#" class="more-link">Read more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}			
+		</div>
+	</div>
+
+	<div class="container">
+		<section id="content">
+			<div class="content-wrap">
+				<div class="section parallax mb-0 border-0 dark" style="height: 450px; padding: 120px 0;">
+
+					<div class="vertical-middle center" style="z-index: 2;">
+						<div class="container clearfix" data-animate="fadeInUp">
+							<div class="heading-block border-bottom-0 mb-0">
+								<h2 style="font-size: 42px;">ТУРЫ ПО МИРУ
+								</h2>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="video-wrap" style="z-index: 1;">
+						<video poster="{% static 'images/videos/explore-poster.jpg' %}" preload="auto" loop autoplay muted>
+							<source src="{% static 'demos/travel/images/videos/1.mp4' %}" type='video/webm' />
+						</video>
+						<div class="video-overlay" style="background-color: rgba(0,0,0,0.1);"></div>
+					</div>
+
+				</div>
+
+				<div class="row bottommargin-lg align-items-stretch">
+
+					<div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #1abc9c;">
+						<div>
+							<h3 class="text-uppercase" style="font-weight: 600;">Новые туры каждый день</h3>
+							<i class="icon-bulb bgicon"></i>
+						</div>
+					</div>
+
+					<div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #1abc9c;">
+						<div>
+							<h3 class="text-uppercase" style="font-weight: 600;">Тех подержка 24/7</h3>
+							<i class="icon-cog bgicon"></i>
+						</div>
+					</div>
+
+					<div class="col-lg-4 dark col-padding overflow-hidden" style="background-color: #1abc9c;">
+						<div>
+							<h3 class="text-uppercase" style="font-weight: 600;">Приятные воспоминание</h3>
+
+							<i class="icon-thumbs-up bgicon"></i>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+	</div>
+
+</section>
+{% endblock %}

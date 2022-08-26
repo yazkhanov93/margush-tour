@@ -19,8 +19,8 @@ class Country(models.Model):
     class Meta:
         verbose_name_plural = "Страны"
 
-    def get_absolute_url(self):
-        return reverse("country_list", args=[self.slug])
+    # def get_absolute_url(self):
+    #     return reverse('country_list', args=[self.slug])
 
     def __str__(self):
         return self.name
@@ -211,7 +211,17 @@ class VisaInfo(models.Model):
     description = models.TextField()
 
     class Meta:
-        verbose_name_plural = "Информация про Виза"
+        verbose_name_plural = "Информация про Виза Туркменистана"
+
+    def __str__(self):
+        return self.name
+
+class VisaInfoAbroad(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    class Meta:
+        verbose_name_plural = "Информация про за рубежная Виза "
 
     def __str__(self):
         return self.name

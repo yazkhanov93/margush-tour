@@ -82,6 +82,10 @@ class BannerAboutUsPageAdmin(admin.ModelAdmin):
 class VisaInfoAdmin(admin.ModelAdmin):
     list_display = ["name",]
 
+@admin.register(VisaInfoAbroad)
+class VisaInfoAbroadAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+
 
 @admin.register(OrderTourInCountry)
 class OrderTourInCountryAdmin(admin.ModelAdmin):

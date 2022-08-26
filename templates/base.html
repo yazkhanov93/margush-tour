@@ -135,20 +135,18 @@
                                 <li class="{% if inside_tours == request.path %} menu-item current {% endif %}"><a class="menu-link" href="{% url 'inside_tours' %}">
                                         <div>Туры внутри страны</div>
                                     </a></li>
-                                <li class="menu-item"><a class="menu-link" href="">
+                                    {% url 'outside_tours' as outside_tours %}
+                                <li class="menu-item {% if outside_tours == request.path %} current {% endif %}"><a class="menu-link" href="{% url 'outside_tours' %}">
                                         <div>Туры за рубежом </div>
                                     </a>
                                     <ul class="sub-menu-container">
+                                        {% for c in countries %}
                                         <li class="menu-item">
-                                            <a class="menu-link" href="">
-                                                <div>О компании</div>
+                                            <a class="menu-link" href="{% url 'country_list' c.id %}">
+                                                <div>{{c.name}}</div>
                                             </a>
                                         </li>
-                                        <li class="menu-item">
-                                            <a class="menu-link" href="">
-                                                <div>O стране</div>
-                                            </a>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </li>
 

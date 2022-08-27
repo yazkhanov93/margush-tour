@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-center page-title-parallax include-header include-topbar"
+	style="background-image: url('{{banner.file.url}}'); background-position: center center; padding: 160px 0;"
+	data-center="background-position: 0px -100px;" data-top-bottom="background-position:0px 200px;">
+
+	<div class="container clearfix">
+		<h1>{{banner.name}}</h1>
+
+	</div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+		============================================= -->
+<section id="content">
+	<div class="content-wrap">
+
+		<div class="container">
+
+			<div class="row mb-5 mt-4">
+				<div class="col-lg-6">
+					<div class="entry-image mb-0">
+						<a href="#"><img src="{{news_detail.image.url}}" alt="Paris"></a>
+					</div>
+				</div>
+				<div class="col-lg-6" style="margin-top: 20px;">
+
+					<div class="entry-title">
+						<h3><a href="#">{{news_detail.name}}</a></h3>
+					</div>
+					<div class="entry-meta">
+						<ul>
+							<li><i class="icon-calendar3"></i> {{news_detail.updated}}</li>
+
+						</ul>
+					</div>
+					<div class="entry-content">
+						<p>{{news_detail.description}}</p>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="line"></div>
+
+			<h4>Новости</h4>
+
+			<div class="row posts-md col-mb-50 mb-0">
+				{% for news in news %}
+				{% if news_detail.id != news.id %}
+				<div class="entry col-md-6">
+					<div class="grid-inner row align-items-center">
+						<div class="col-lg-6">
+							<div class="entry-image mb-0">
+								<a href="#"><img src="{{news.image.url}}" alt="Paris"></a>
+							</div>
+						</div>
+						<div class="col-lg-6 mt-3 mt-lg-0">
+							
+							<div class="entry-title title-xs nott">
+								<h3><a href="#">{{news.name}}</a></h3>
+							</div>
+							<div class="entry-meta">
+								<ul>
+									<li><i class="icon-calendar3"></i>{{news.updated}}</li>
+								</ul>
+							</div>
+							<div class="entry-content">
+								<a href="{% url 'news_detail' news.id %}" class="more-link">Read more</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section><!-- #content end -->
+
+<script>
+	$(function () {
+		$('.travel-date-group').datepicker({
+			autoclose: true,
+			startDate: "today"
+		});
+	});
+</script>
+{% endblock %}

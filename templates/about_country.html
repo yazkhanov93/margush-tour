@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="page-title" class="page-title-parallax page-title-dark page-title-video include-header include-topbar"
+	style="padding: 80px 0">
+
+	<div class="video-wrap">
+		<video poster="{{banner.file1.url}}" preload="auto" loop autoplay muted>
+			<source src='{{banner.file1.url}}' type='video/mp4' />
+		</video>
+	</div>
+
+	<div class="container dark clearfix">
+		<div class="heading-block center topmargin border-bottom-0">
+		</div>
+
+
+	</div>
+
+</section>
+
+<!-- Content
+		============================================= -->
+<section id="content">
+
+	<div class="content-wrap pb-0" style="z-index: 1;">
+
+		<div class="container topmargin clearfix">
+
+			<!-- What We Do
+					============================================= -->
+			<div class="heading-block center border-0" data-heading="W">
+				<h3>Margush tourism</h3>
+			</div>
+			<div class="row clearfix">
+				<div class="center col-lg-8 offset-lg-2 bottommargin">
+					<h3 class="text-rotater font-secondary" data-separator="," data-rotate="fadeInRight"
+						data-speed="3500">Делай все возможное &amp; "Margush Tourism" была создана в 1996 году и
+						на сегодняшний день является ведущей туристической компанией в Туркменистане.
+						Специализируясь на индивидуальных турах по Центральной Азии, наша
+						высокопрофессиональная, гибкая и знающая команда разрабатывает маршруты для искушенных
+						путешественников, которые хотят более глубокого знакомства с культурой прошлого и
+						настоящего в Туркменистане и всей Центральной Азии. Мы всегда можем адаптировать
+						маршруты и программы в соответствии с вашими пожеланиями. <span class="t-rotate color">В
+							низкий сезон наша команда путешествует по Туркменистану в поисках новых интересных
+							направлений, а также следит за новостями в популярных уголках нашей страны. Таким
+							образом, мы стараемся, чтобы наши советы были максимально точными и реалистичными.
+						</span><br> Мы будем рады видеть вас в числе наших гостей!</h3>
+				</div>
+
+				<div class="clear"></div>
+
+				<!-- Features colomns
+						============================================= -->
+				<div class="row clearfix">
+					{% for post in post %}
+					<div class="col-lg-4 bottommargin-sm">
+						<div class="feature-box media-box fbox-bg">
+							<div class="fbox-media">
+								<a href="#"><img src="{{post.image.url}}" alt="Featured Box Image"></a>
+							</div>
+							<div class="fbox-content fbox-content-lg">
+								<h3 class="nott ls0 font-weight-semibold">
+
+									{{post.name}}<span
+										class="subtitle font-secondary font-weight-light ls0">{{post.description}}</span>
+								</h3>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+		</div>
+
+		<!-- How We Work
+				============================================= -->
+				<div class="section bg-transparent clearfix">
+					<div class="container clearfix">
+						<div class="heading-block bottommargin-lg center border-0" data-heading="W">
+							<h3 class="nott ls0">География</h3>
+						</div>
+					</div>
+					
+					
+			<!-- How We Work - Carousel
+			============================================= -->
+			<div id="oc-features"
+				class="owl-carousel owl-carousel-full image-carousel carousel-widget customjs">
+				{% for geo in geography %}
+				<div class="oc-item">
+					<div class="row cleafix">
+						<div class="col-xl-8">
+							<img src="{{geo.image.url}}" alt="Image">
+						</div>
+						<div class="col-xl-4" style="padding: 20px 0 0 20px;">
+							<h3>{{geo.name}}</h3>
+							<p>{{geo.description}}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}	
+				
+			</div>
+		</div>
+
+
+	</div>
+</section><!-- #content end -->
+<script>
+	jQuery(window).on('pluginCarouselReady', function () {
+		$('#oc-features').owlCarousel({
+			items: 1,
+			margin: 60,
+			nav: true,
+			navText: ['<i class="icon-line-arrow-left"></i>', '<i class="icon-line-arrow-right"></i>'],
+			dots: false,
+			stagePadding: 30,
+			responsive: {
+				768: { items: 2 },
+				1200: { stagePadding: 200 }
+			},
+		});
+	});
+</script>
+
+{% endblock %}

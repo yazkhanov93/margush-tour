@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page Title
+		============================================= -->
+<section id="page-title" class="page-title-parallax page-title-dark page-title-video include-header include-topbar"
+    style="padding: 80px 0">
+
+    <div class="video-wrap">
+        <video poster="{{banner.file1.url}}" preload="auto" loop autoplay muted>
+            <source src='{{banner.file1.url}}' type='video/mp4' />
+        </video>
+    </div>
+
+    <div class="container dark clearfix">
+        <div class="heading-block center topmargin border-bottom-0">
+            <h3 data-animate="fadeInUp">
+                Информация о путишествие</h3>
+        </div>
+
+
+    </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+		============================================= -->
+<section id="content" class="bg-light">
+
+    <div class="content-wrap pt-lg-0 pt-xl-0 pb-0">
+
+        <div class="container clearfix">
+
+            <div class="heading-block border-bottom-0 center pt-4 mb-3">
+                <h3>
+                    Маленький шаг может стать началом большого пути</h3>
+            </div>
+
+            <!-- Posts
+					============================================= -->
+            <div class="row grid-container infinity-wrapper clearfix">
+                {% for info in info %}
+                <!-- ARTICLE NO. 1 -->
+                <div class="col-md-6 p-3">
+                    <div class="entry mb-1 clearfix">
+                        <div class="entry-image mb-3">
+                            {% if info.image %}
+                            <a href="./images/tayyn/main_page/1.jpg" data-lightbox="image"
+                                style="background: url('{{info.image.url}}') no-repeat center center; background-size: cover; height: 278px;"></a>
+                                {% else %}
+                                <a href="#">
+                                    <video poster="{{info.video.url}}" preload="auto" loop autoplay muted
+                                        style="display: block; width: 100%;">
+                                        <source src='{{info.video.url}}' type='video/mp4' />
+                                    </video>
+                                </a>
+                                {% endif %}
+                        </div>
+                        <div class="entry-title">
+                            <h3><a href="#">{{info.name}}</a></h3>
+                        </div>
+                        <div class="entry-content">
+                            <p>{{info.description}}</p>
+                            
+                        </div>
+                        <div class="entry-meta no-separator nohover">
+                            <ul class="justify-content-between mx-0">
+                                <li><i class="icon-calendar2"></i> {{info.updated}}</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section><!-- #content end -->
+<script>
+
+    $(function () {
+        $('.travel-date-group').datepicker({
+            autoclose: true,
+            startDate: "today",
+            minViewMode: 1,
+            format: "M-yyyy"
+        });
+    });
+
+</script>
+
+{% endblock %}
+

@@ -3,6 +3,53 @@ from .models import *
 from . import models
 
 
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+
+
+@admin.register(TourInformation)
+class TourInformationAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+
+
+@admin.register(Geography)
+class GeographyAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+
+
+@admin.register(AboutCountry)
+class AboutcountryAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+
+
+class TransportImageInline(admin.StackedInline):
+    model = models.TransportImage
+    extra = 1
+
+@admin.register(Transport)
+class TransportAdmin(admin.ModelAdmin):
+    list_display = ["name",]
+    inlines = [TransportImageInline]
+
+    save_as = True
+    save_on_top = True
+
+@admin.register(Team)
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ["fullname", "profession"]
+
+
+@admin.register(Contacts)
+class ContactsAdmin(admin.ModelAdmin):
+    list_display = ["address","phone","email"]
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ["fullname","email", "show"]
+
+
 @admin.register(ExchangeRate)
 class ExchangeRateAdmin(admin.ModelAdmin):
     list_display = ["usd",]
@@ -12,6 +59,20 @@ class ExchangeRateAdmin(admin.ModelAdmin):
 class CountryAdmin(admin.ModelAdmin):
     list_display = ["name",]
     prepopulated_fields = {"slug":("name",)}
+
+
+class AboutCompanyImageInline(admin.StackedInline):
+    model = models.AboutCompanyImage
+    extra = 1
+
+
+@admin.register(AboutCompany)
+class AboutCompanyAdmin(admin.ModelAdmin):
+    list_display = ["name", "headline"]
+    inlines = [AboutCompanyImageInline]
+
+    save_as = True
+    save_on_top = True
 
 """ Tours Inside Country """
 

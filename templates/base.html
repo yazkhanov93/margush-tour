@@ -55,8 +55,8 @@
 						============================================= -->
                         <div class="top-links">
                             <ul class="top-links-container">
-                                <li class="top-links-item"><a href="demo-travel.html">Главная</a></li>
-                                <li class="top-links-item"><a href="contact.html">Контакты</a></li>
+                                <li class="top-links-item"><a href="/">Главная</a></li>
+                                <li class="top-links-item"><a href="#footer">Контакты</a></li>
 
                             </ul>
                         </div><!-- .top-links end -->
@@ -64,30 +64,30 @@
                     </div>
 
                     <div class="col-12 col-md-auto">
-
+                       
                         <!-- Top Social
 						============================================= -->
                         <ul id="top-social">
                             <li><a href="#" class="si-facebook"><span class="ts-icon"><i
-                                            class="icon-facebook"></i></span><span class="ts-text">Facebook</span></a>
+                                            class="icon-facebook"></i></span><span class="ts-text">{{contacts.facebook}}</span></a>
                             </li>
                             <li><a href="#" class="si-twitter"><span class="ts-icon"><i
-                                            class="icon-telegram"></i></span><span class="ts-text">Telegram</span></a>
+                                            class="icon-telegram"></i></span><span class="ts-text">{{contacts.telegram}}</span></a>
                             </li>
                             <li><a href="#" class="si-pinterest"><span class="ts-icon"><i
-                                            class="icon-whatsapp"></i></span><span class="ts-text">Whatsapp</span></a>
+                                            class="icon-whatsapp"></i></span><span class="ts-text">{{contacts.whatsapp}}</span></a>
                             </li>
                             <li><a href="#" class="si-instagram"><span class="ts-icon"><i
                                             class="icon-instagram2"></i></span><span
-                                        class="ts-text">Instagram</span></a></li>
+                                        class="ts-text">{{contacts.instagram}}</span></a></li>
                             <li><a href="tel:+1.11.85412542" class="si-call"><span class="ts-icon"><i
-                                            class="icon-call"></i></span><span class="ts-text">+1.11.85412542</span></a>
+                                            class="icon-call"></i></span><span class="ts-text">{{contacts.phone}}</span></a>
                             </li>
                             <li><a href="mailto:info@canvas.com" class="si-email3"><span class="ts-icon"><i
                                             class="icon-envelope-alt"></i></span><span
-                                        class="ts-text">info@canvas.com</span></a></li>
+                                        class="ts-text">{{contacts.email}}</span></a></li>
                         </ul><!-- #top-social end -->
-
+                 
                     </div>
                 </div>
 
@@ -150,7 +150,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="menu-item"><a class="menu-link" href="">
+                                <li class="menu-item"><a class="menu-link" href="{% url 'tour_information' %}">
                                         <div>Инфо о путишествии</div>
                                     </a></li>
                                 <li class="menu-item">
@@ -159,12 +159,12 @@
                                     </a>
                                     <ul class="sub-menu-container">
                                         <li class="menu-item">
-                                            <a class="menu-link" href="">
+                                            <a class="menu-link" href="{% url 'about_company' %}">
                                                 <div>О компании</div>
                                             </a>
                                         </li>
                                         <li class="menu-item">
-                                            <a class="menu-link" href="">
+                                            <a class="menu-link" href="{% url 'about_country' %}">
                                                 <div>O стране</div>
                                             </a>
                                         </li>
@@ -172,11 +172,11 @@
 
                                     </ul>
                                 </li>
-                                <li class="menu-item"><a class="menu-link" href="">
+                                <li class="menu-item"><a class="menu-link" href="{% url 'news' %}">
                                         <div><i class="icon-pencil2"></i>Новости</div>
                                     </a></li>
                                 <li class="menu-item"><a class="menu-link" href="TEL:+99363071234">
-                                        <div><i class="icon-phone3"></i>+993 63 012345</div>
+                                        <div><i class="icon-phone3"></i>{{contacts.phone}}</div>
                                     </a></li>
                             </ul>
 
@@ -204,12 +204,11 @@
                                     style="background: url('{% static 'images/world-map.png' %}') no-repeat center center; background-size: 100%;">
                                     <address>
                                         <strong>Наш Адрес:</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
+                                        <a href="{{contacts.location}}" target="_blank">{{contacts.address}}</a><br>
+
                                     </address>
-                                    <abbr title="Phone Number"><strong>Phone:</strong></abbr> (1) 8547 632521<br>
-                                    <abbr title="Fax"><strong>Fax:</strong></abbr> (1) 11 4752 1433<br>
-                                    <abbr title="Email Address"><strong>Email:</strong></abbr> info@canvas.com
+                                    <abbr title="Phone Number"><strong>Телефон: </strong></abbr>{{contacts.phone}}<br>
+                                    <abbr title="Email Address"><strong>Эл-почта: </strong></abbr>{{contacts.email}}
                                 </div>
 
                             </div>
@@ -230,42 +229,15 @@
                                                     <a href=""><img src="{% static 'images/testimonials/3.jpg' %}"
                                                             alt="Customer Testimonails"></a>
                                                 </div>
+                                                {% for f in feedbacks %}
                                                 <div class="testi-content">
-                                                    <p>Similique fugit repellendus expedita excepturi iure perferendis
-                                                        provident quia eaque. Repellendus, vero numquam?</p>
+                                                    <p>{{f.message}}</p>
                                                     <div class="testi-meta">
-                                                        Steve Jobs
-                                                        <span>Apple Inc.</span>
+                                                        {{f.fullname}}
+                                                       
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="slide">
-                                                <div class="testi-image">
-                                                    <a href=""><img src="{% static 'images/testimonials/2.jpg' %}"
-                                                            alt="Customer Testimonails"></a>
-                                                </div>
-                                                <div class="testi-content">
-                                                    <p>Natus voluptatum enim quod necessitatibus quis expedita harum
-                                                        provident eos obcaecati id culpa corporis molestias.</p>
-                                                    <div class="testi-meta">
-                                                        Collis Ta'eed
-                                                        <span>Envato Inc.</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="slide">
-                                                <div class="testi-image">
-                                                    <a href=""><img src="{% static 'images/testimonials/1.jpg' %}"
-                                                            alt="Customer Testimonails"></a>
-                                                </div>
-                                                <div class="testi-content">
-                                                    <p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur
-                                                        ullam quibusdam cum libero illo rerum!</p>
-                                                    <div class="testi-meta">
-                                                        John Doe
-                                                        <span>XYZ Inc.</span>
-                                                    </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
@@ -273,34 +245,7 @@
 
                             </div>
 
-                            <div class="widget clearfix">
-
-                                <a href="#" class="social-icon si-small si-rounded si-facebook">
-                                    <i class="icon-facebook"></i>
-                                    <i class="icon-facebook"></i>
-                                </a>
-
-                                <a href="#" class="social-icon si-small si-rounded si-twitter">
-                                    <i class="icon-instagram"></i>
-                                    <i class="icon-instagram"></i>
-                                </a>
-
-                                <a href="#" class="social-icon si-small si-rounded si-gplus">
-                                    <i class="icon-vk"></i>
-                                    <i class="icon-vk"></i>
-                                </a>
-
-                                <a href="#" class="social-icon si-small si-rounded si-vimeo">
-                                    <i class="icon-whatsapp"></i>
-                                    <i class="icon-whatsapp"></i>
-                                </a>
-
-                                <a href="#" class="social-icon si-small si-rounded si-github">
-                                    <i class="icon-telegram"></i>
-                                    <i class="icon-telegram"></i>
-                                </a>
-                                
-                            </div>
+                           
 
                         </div>
 
@@ -314,7 +259,7 @@
 
                                 <form id="quick-contact-form" name="quick-contact-form" action=""
                                     method="post" class="quick-contact-form mb-0">
-
+                                    {% csrf_token %}
                                     <div class="form-process">
                                         <div class="css3-spinner">
                                             <div class="css3-spinner-scaler"></div>
@@ -326,18 +271,18 @@
                                             <div class="input-group-text"><i class="icon-user"></i></div>
                                         </div>
                                         <input type="text" class="required form-control" id="quick-contact-form-name"
-                                            name="quick-contact-form-name" value="" placeholder="Ф.И.О" />
+                                            name="fullname" value="" placeholder="Ф.И.О" />
                                     </div>
                                     <div class="input-group mx-auto">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="icon-email2"></i></div>
                                         </div>
                                         <input type="text" class="required form-control email"
-                                            id="quick-contact-form-email" name="quick-contact-form-email" value=""
+                                            id="quick-contact-form-email" name="email" value=""
                                             placeholder="Эл-почта" />
                                     </div>
                                     <textarea class="required form-control input-block-level short-textarea"
-                                        id="quick-contact-form-message" name="quick-contact-form-message" rows="4"
+                                        id="quick-contact-form-message" name="message" rows="4"
                                         cols="30" placeholder="Текст"></textarea>
                                     <input type="text" class="d-none" id="quick-contact-form-botcheck"
                                         name="quick-contact-form-botcheck" value="" />

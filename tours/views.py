@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from .models import *
-# from django.core.paginator import Paginator, EmptyPage, Page
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 contact = Contacts.objects.last()
@@ -33,6 +33,14 @@ def homepage(request):
 def tourInsideCountry(request):
     tour = TourInCountry.objects.all()
     banner = BannerTourPage.objects.all()
+    page = request.GET.get("page", 1)
+    paginator = Paginator(tour, 1)
+    try:
+        tours = paginator.page(page)
+    except PageNotAnInteger:
+        tours = paginator.page(1)
+    except EmptyPage:
+        tours = paginator.page(paginator.num_pages)
     feedback = None
     if request.method == "POST":
         fullname = request.POST.get("fullname")
@@ -44,7 +52,7 @@ def tourInsideCountry(request):
             message=message
         )
     context = {
-        "tours":tour,
+        "tours":tours,
         "banner":banner,
          "contacts":contact,
         "feedbacks":feedbacks,

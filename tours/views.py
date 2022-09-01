@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from .models import *
+# from django.core.paginator import Paginator, EmptyPage, Page
 
 
 contact = Contacts.objects.last()

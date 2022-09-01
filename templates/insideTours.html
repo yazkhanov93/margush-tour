@@ -4,7 +4,7 @@
 {% block content %}
 <!-- Page Title
 		============================================= -->
-		{% for banner in banner %}
+{% for banner in banner %}
 <section id="page-title" class="page-title-center page-title-parallax page-title-dark include-header include-topbar"
 	style="background-image: url('{{banner.file.url}}'); background-position: center center; padding: 100px 0;"
 	data-bottom-top="background-position:0px 0px;" data-top-bottom="background-position:0px -200px;">
@@ -37,15 +37,13 @@
 									<div class="fslider" data-pagi="false" data-lightbox="gallery">
 										<div class="flexslider">
 											<div class="slider-wrap">
-												<div class="slide"><a href="{% url 'inside_tour_detail' tour.id %}"
-														><img
+												<div class="slide"><a href="{% url 'inside_tour_detail' tour.id %}"><img
 															src="{{tour.image1.url}}"
 															alt="Standard Post with Gallery"></a></div>
-												<div class="slide"><a href="{% url 'inside_tour_detail' tour.id %}"
-														><img
+												<div class="slide"><a href="{% url 'inside_tour_detail' tour.id %}"><img
 															src="{{tour.image2.url}}"
 															alt="Standard Post with Gallery"></a></div>
-												
+
 											</div>
 										</div>
 									</div>
@@ -56,16 +54,16 @@
 									</div>
 									<div class="entry-meta">
 										<ul>
-											<li><i class="icon-line-map"></i><a
-												target="_blank" rel="noopener noreferrer" 	href="{{tour.location}}"
-													> Карта</a></li>
+											<li><i class="icon-line-map"></i><a target="_blank"
+													rel="noopener noreferrer" href="{{tour.location}}"> Карта</a></li>
 										</ul>
 
 
 									</div>
 									<div class="entry-title title-sm">
 										<p class="desc" style="font-size: 1.1rem; font-weight: 400; margin-top: 5%;"><a
-												href="{% url 'inside_tour_detail' tour.id %}">{{tour.description|truncatewords:15}}</a></p>
+												href="{% url 'inside_tour_detail' tour.id %}">{{tour.description|truncatewords:15}}</a>
+										</p>
 									</div>
 
 								</div>
@@ -76,18 +74,31 @@
 										class="button button-rounded mt-4 mx-0">Открыть</a>
 								</div>
 							</div>
-						</div>	
+						</div>
 						{% endfor %}
 					</div>
-
+					{% if tours.has_other_pages %}
 					<ul class="pagination my-0">
-						<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+						{% if tours.has_previous %}
+						<li class="page-item"><a class="page-link" href="?page={{ tours.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+						<li class="page-item"><span class="page-link">&laquo;</span></li>
+						{% endif %}
+						{% for i in tours.paginator.page_range %}
+						{% if tours.number == i %}
+						<li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+						{% else %}
+						<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+						{% if tours.has_next %}
+						<li class="page-item"><a class="page-link" href="?page={{ tours.next_page_number }}">&raquo;</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+						{% endif %}
 					</ul>
+					{% endif %}
+
 
 				</div>
 

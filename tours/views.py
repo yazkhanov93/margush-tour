@@ -34,7 +34,7 @@ def tourInsideCountry(request):
     tour = TourInCountry.objects.all()
     banner = BannerTourPage.objects.all()
     page = request.GET.get("page", 1)
-    paginator = Paginator(tour, 1)
+    paginator = Paginator(tour, 10)
     try:
         tours = paginator.page(page)
     except PageNotAnInteger:
@@ -106,6 +106,14 @@ def insideTourDetail(request, pk):
 def tourOutsideCountry(request):
     tour = TourOutCountry.objects.all()
     banner = BannerTourPage.objects.all()
+    page = request.GET.get("page", 1)
+    paginator = Paginator(tour, 10)
+    try:
+        tours = paginator.page(page)
+    except PageNotAnInteger:
+        tours = paginator.page(1)
+    except EmptyPage:
+        tours = paginator.page(paginator.num_pages)
     feedback = None
     if request.method == "POST":
         fullname = request.POST.get("fullname")
@@ -117,7 +125,7 @@ def tourOutsideCountry(request):
             message=message
         )
     context = {
-        "tours":tour,
+        "tours":tours,
         "banner":banner,
          "contacts":contact,
         "feedbacks":feedbacks,

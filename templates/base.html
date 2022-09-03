@@ -149,11 +149,13 @@
                                         {% endfor %}
                                     </ul>
                                 </li>
-
-                                <li class="menu-item"><a class="menu-link" href="{% url 'tour_information' %}">
+                                {% url 'tour_information' as tour_information %}
+                                <li class="menu-item {% if tour_information == request.path %} current {% endif %}"><a class="menu-link" href="{% url 'tour_information' %}">
                                         <div>Инфо о путишествии</div>
                                     </a></li>
-                                <li class="menu-item">
+                                {% url 'about_company' as about_company %}
+                                {% url 'about_country' as about_country %}
+                                <li class="menu-item {% if about_company == request.path %} current {% elif about_country == request.path %} current {% endif %}">
                                     <a class="menu-link" href="">
                                         <div>О нас</div>
                                     </a>
@@ -172,7 +174,8 @@
 
                                     </ul>
                                 </li>
-                                <li class="menu-item"><a class="menu-link" href="{% url 'news' %}">
+                                {% url 'news' as news_list %}
+                                <li class="menu-item {% if news_list == request.path %} current {% endif %}"><a class="menu-link" href="{% url 'news' %}">
                                         <div><i class="icon-pencil2"></i>Новости</div>
                                     </a></li>
                                 <li class="menu-item"><a class="menu-link" href="TEL:+99363071234">

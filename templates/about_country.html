@@ -30,9 +30,9 @@
 			<!-- What We Do
 					============================================= -->
 			<div class="heading-block center border-0" data-heading="W">
-				<h3>Margush tourism</h3>
+				<h3>О стране</h3>
 			</div>
-			<div class="row clearfix">
+			<!-- <div class="row clearfix">
 				<div class="center col-lg-8 offset-lg-2 bottommargin">
 					<h3 class="text-rotater font-secondary" data-separator="," data-rotate="fadeInRight"
 						data-speed="3500">Делай все возможное &amp; "Margush Tourism" была создана в 1996 году и
@@ -46,7 +46,7 @@
 							направлений, а также следит за новостями в популярных уголках нашей страны. Таким
 							образом, мы стараемся, чтобы наши советы были максимально точными и реалистичными.
 						</span><br> Мы будем рады видеть вас в числе наших гостей!</h3>
-				</div>
+				</div> -->
 
 				<div class="clear"></div>
 
@@ -76,36 +76,31 @@
 
 		<!-- How We Work
 				============================================= -->
-				<div class="section bg-transparent clearfix">
-					<div class="container clearfix">
-						<div class="heading-block bottommargin-lg center border-0" data-heading="W">
-							<h3 class="nott ls0">География</h3>
-						</div>
-					</div>
-					
-					
-			<!-- How We Work - Carousel
-			============================================= -->
-			<div id="oc-features"
-				class="owl-carousel owl-carousel-full image-carousel carousel-widget customjs">
+		<div class="section bg-transparent clearfix">
+			<div class="container clearfix">
+				<div class="heading-block bottommargin-lg center border-0" data-heading="W">
+					<h3 class="nott ls0">География</h3>
+				</div>
+			</div>
+			<div class="container row clearfix mr-4">
 				{% for geo in geography %}
-				<div class="oc-item">
-					<div class="row cleafix">
-						<div class="col-xl-8">
-							<img src="{{geo.image.url}}" alt="Image">
+				<div class="col-lg-4 bottommargin-sm">
+					<div class="feature-box media-box fbox-bg">
+						<div class="fbox-media">
+							<a href=""><img src="{{geo.image.url}}" alt="Featured Box Image"></a>
 						</div>
-						<div class="col-xl-4" style="padding: 20px 0 0 20px;">
-							<h3>{{geo.name}}</h3>
-							<p>{{geo.description}}</p>
+						<div class="fbox-content fbox-content-lg">
+							<h3 class="nott ls0 font-weight-semibold">
+								{{geo.name}}<span
+									class="subtitle font-secondary font-weight-light ls0">{{geo.description}}</span>
+							</h3>
 						</div>
 					</div>
 				</div>
-				{% endfor %}	
-				
-			</div>
+				{% endfor %}
+
+			</div>			
 		</div>
-
-
 	</div>
 </section><!-- #content end -->
 <script>

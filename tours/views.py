@@ -10,6 +10,7 @@ def homepage(request):
     tour_inside = TourInCountry.objects.all()[:4]
     tour_outside = TourOutCountry.objects.all()[:4]
     banner = BannerHomePage.objects.all()
+    news = News.objects.all()[:4]
     feedback = None
     if request.method == "POST":
         fullname = request.POST.get("fullname")
@@ -26,6 +27,7 @@ def homepage(request):
         "banner": banner,
         "contacts":contact,
         "feedbacks":feedbacks,
+        "news":news,
     }
     return render(request, "index.html", context)
 
@@ -62,7 +64,7 @@ def tourInsideCountry(request):
 
 def insideTourDetail(request, pk):
     tour = TourInCountry.objects.get(id=pk)
-    roadmap = TourInCountryRoadMap.objects.all()
+    roadmap = TourInCountryRoadMap.objects.filter(tour=tour)
     related_tours = TourInCountry.objects.all()
     banner = BannerTourPage.objects.all()
     tour_image = TourInCountryImage.objects.filter(tour=tour)
@@ -137,6 +139,14 @@ def country_list(request, id):
     country = get_object_or_404(Country, id=id)
     tour = TourOutCountry.objects.filter(country=country)
     banner = BannerTourPage.objects.all()
+    page = request.GET.get("page", 1)
+    paginator = Paginator(tour, 10)
+    try:
+        tours = paginator.page(page)
+    except PageNotAnInteger:
+        tours = paginator.page(1)
+    except EmptyPage:
+        tours = paginator.page(paginator.num_pages)
     feedback = None
     if request.method == "POST":
         fullname = request.POST.get("fullname")
@@ -149,7 +159,7 @@ def country_list(request, id):
         )
     context = {
         "country":country,
-        "tours":tour,
+        "tours":tours,
         "banner":banner,
          "contacts":contact,
         "feedbacks":feedbacks,

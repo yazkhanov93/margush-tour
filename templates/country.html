@@ -79,14 +79,27 @@
 						{% endfor %}
 					</div>
 
+					{% if tours.has_other_pages %}
 					<ul class="pagination my-0">
-						<li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">4</a></li>
-						<li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+						{% if tours.has_previous %}
+						<li class="page-item"><a class="page-link" href="?page={{ tours.previous_page_number }}">&laquo;</a></li>
+						{% else %}
+						<li class="page-item"><span class="page-link">&laquo;</span></li>
+						{% endif %}
+						{% for i in tours.paginator.page_range %}
+						{% if tours.number == i %}
+						<li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+						{% else %}
+						<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+						{% if tours.has_next %}
+						<li class="page-item"><a class="page-link" href="?page={{ tours.next_page_number }}">&raquo;</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+						{% endif %}
 					</ul>
+					{% endif %}
 
 				</div>
 
